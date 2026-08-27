@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- build: 2026082701 -->
+<!-- build: 2026082702 -->
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>CCDV-F Advanced — Set 3 &mdash; SF Knowledge Hub</title>
@@ -90,7 +90,7 @@ a{color:var(--blue)}
     <small>Advanced — Set 3</small>
     <span class="user" id="user"></span>
   </div>
-  <p class="crumb"><a href="index.html?v=2026082701">&larr; Practice dashboard</a></p>
+  <p class="crumb"><a href="index.html?v=2026082702">&larr; Practice dashboard</a></p>
   <div id="app"><p style="color:var(--mut)">Sign in to begin&hellip;</p></div>
   <div class="foot">Original practice items written against Anthropic's Claude Certified Developer &ndash; Foundations Exam Guide v1.0 (July 2026) and the official Developer Foundations prep path. Not affiliated with or endorsed by Anthropic. For internal SF Knowledge Hub prep only.</div>
 </div>
@@ -110,7 +110,13 @@ const firebaseConfig = {
 };
   const ALLOWED_DOMAIN = "sourcefuse.com";
   const ALLOWED_EXTRA = ["ravjv2013@gmail.com"];  // TEST ONLY - remove after testing
-  let auth, GoogleProvider, signInRedirect, getRedirect, signInEmail, onAuth, signOutFn, appMod;
+  // Google SSO is offered to these accounts only. Everyone else signs in with
+  // email and password. This routes people to the right method; it is not an
+  // access control, since any valid account can still use email/password.
+  const SSO_ALLOWED = ["jv.ravichandran@sourcefuse.com", "noushin.khan@sourcefuse.com"];
+  // Reading window.top throws when framed cross-origin, which is itself the answer.
+  const FRAMED = (function(){try{return window.self!==window.top;}catch(e){return true;}})();
+  let auth, GoogleProvider, signInRedirect, signInPopup, getRedirect, signInEmail, onAuth, signOutFn, appMod;
   let readyCb = null;
 
   async function initFirebase() {
@@ -120,6 +126,7 @@ const firebaseConfig = {
     auth = authMod.getAuth(app);
     GoogleProvider = authMod.GoogleAuthProvider;
     signInRedirect = (p) => authMod.signInWithRedirect(auth, p);
+    signInPopup = (p) => authMod.signInWithPopup(auth, p);
     getRedirect = () => authMod.getRedirectResult(auth);
     signInEmail = (e, pw) => authMod.signInWithEmailAndPassword(auth, e, pw);
     onAuth = (cb) => authMod.onAuthStateChanged(auth, cb);
@@ -160,13 +167,42 @@ const firebaseConfig = {
     </div></div>`;}
   function fail(m){const e=document.getElementById("sf-err");if(e)e.textContent=m;}
   function validDomain(x){if(typeof x!=="string")return false;var e=x.toLowerCase();return e.endsWith("@"+ALLOWED_DOMAIN)||ALLOWED_EXTRA.includes(e);}
+  function ssoAllowed(x){if(typeof x!=="string")return false;return SSO_ALLOWED.includes(x.toLowerCase());}
+  function isGoogleUser(u){
+    if(!u||!u.providerData)return false;
+    for(var i=0;i<u.providerData.length;i++){if(u.providerData[i].providerId==="google.com")return true;}
+    return false;
+  }
+  var SSO_DENIED = "Google sign-in isn't enabled for this account. Use your email and password below.";
   function proceed(email){const el=document.getElementById("sf-auth");if(el)el.remove();if(readyCb)readyCb(email,signOutFn);}
   function wireOverlay(){
+    // A restored session can remove the overlay before this runs.
+    if(!document.getElementById("sf-auth"))return;
     document.getElementById("sf-google").addEventListener("click",async()=>{
       fail("");
-      if(!signInRedirect)return fail("Auth service not ready - Google SSO needs the deployed https host. Use email/password below.");
-      try{const p=new GoogleProvider();p.setCustomParameters({hd:ALLOWED_DOMAIN,prompt:"select_account"});await signInRedirect(p);}
-      catch(e){fail("Google sign-in couldn't start. Use email/password below.");}
+      if(!signInRedirect&&!signInPopup)return fail("Auth service not ready - Google SSO needs the deployed https host. Use email/password below.");
+      // Build the provider synchronously: awaiting first loses the user gesture
+      // and the browser blocks the popup.
+      const p=new GoogleProvider();
+      p.setCustomParameters({hd:ALLOWED_DOMAIN,prompt:"select_account"});
+      try{
+        if(FRAMED){
+          // Google refuses to render its sign-in handler inside a frame, so a
+          // redirect here ends in a 403. The popup is a top-level window.
+          const r=await signInPopup(p);
+          const email=(r&&r.user&&r.user.email)||"";
+          if(!validDomain(email)){await signOutFn();return fail("Please use your @sourcefuse.com account.");}
+          if(!ssoAllowed(email)){await signOutFn();return fail(SSO_DENIED);}
+          proceed(email);
+        }else{
+          await signInRedirect(p);
+        }
+      }catch(e){
+        const code=(e&&e.code)||"";
+        if(code==="auth/popup-blocked")fail("Your browser blocked the sign-in window. Allow pop-ups for this site, or use email/password below.");
+        else if(code==="auth/popup-closed-by-user"||code==="auth/cancelled-popup-request")fail("Sign-in window closed before it finished. Try again.");
+        else fail("Google sign-in couldn't start. Use email/password below.");
+      }
     });
     document.getElementById("sf-signin").addEventListener("click",async()=>{
       fail("");
@@ -187,10 +223,17 @@ const firebaseConfig = {
       try{const res=await getRedirect();
         if(res&&res.user){const email=res.user.email;
           if(!validDomain(email)){await signOutFn();fail("Please use your @sourcefuse.com account.");}
+          else if(!ssoAllowed(email)){await signOutFn();fail(SSO_DENIED);}
           else{proceed(email);return;}}
       }catch(e){fail("Google sign-in didn't complete. Try again or use email/password.");}
     }
-    if(onAuth){onAuth((u)=>{if(u&&validDomain(u.email))proceed(u.email);});}
+    // A restored session is checked the same way, so an existing Google session
+    // for a non-SSO account cannot walk straight in.
+    if(onAuth){onAuth(async(u)=>{
+      if(!u||!validDomain(u.email))return;
+      if(isGoogleUser(u)&&!ssoAllowed(u.email)){await signOutFn();fail(SSO_DENIED);return;}
+      proceed(u.email);
+    });}
     wireOverlay();
   }
   window.SFAuth={mount};
@@ -200,7 +243,7 @@ const firebaseConfig = {
 
 <script>
 (function(){
-  var BUILD="2026082701";
+  var BUILD="2026082702";
   var SET_KEY="ccdvf_set3_adv_v1";
   var SET_TITLE="Advanced — Set 3";
   var TOTAL_MIN=48;
