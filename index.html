@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<!-- build: 2026082701 -->
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Claude CCDV-F Prep &mdash; SF Knowledge Hub</title>
+<style>
+:root{--blue:#1a6eb5;--blue-d:#12507f;--ink:#1a2733;--mut:#5a6b7a;--line:#e2e8ef;--ok:#127a3e;--no:#b5341a;--amber:#8a5a00;--amber-bg:#fff6e0;--bg:#f5f8fb;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+.wrap{max-width:900px;margin:0 auto;padding:28px 20px 60px}
+.head{display:flex;align-items:center;gap:12px;margin-bottom:6px;flex-wrap:wrap}
+.badge{background:var(--blue);color:#fff;font-weight:700;font-size:13px;padding:5px 12px;border-radius:20px;letter-spacing:.3px}
+.head small{color:var(--mut)}
+.user{margin-left:auto;font-size:12.5px;color:var(--mut);display:flex;align-items:center;gap:10px}
+.signout{background:none;border:0;color:var(--blue);font-size:12.5px;cursor:pointer;text-decoration:underline;font-family:inherit;padding:0}
+.hero{margin:14px 0 26px}
+.hero h1{font-size:24px;margin:0 0 6px}
+.hero p{color:var(--mut);margin:0;font-size:14.5px}
+.foot{text-align:center;color:var(--mut);font-size:12px;margin-top:28px}
+.box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:0 1px 3px rgba(20,50,80,.05)}
+.box-tag{display:inline-block;align-self:flex-start;font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:12px;margin-bottom:10px}
+.tag-basic{color:var(--blue-d);background:#eaf3fb}
+.tag-adv{color:#6a3d00;background:#fdf0da}
+.tag-expert{color:#5b2a86;background:#f2e9fb}
+.launch{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:12px 18px;font-size:14.5px;font-weight:600;cursor:pointer;font-family:inherit;text-align:center;text-decoration:none;display:inline-block}
+.launch:hover{background:var(--blue-d)}
+.launch:disabled{background:#adbccb;cursor:not-allowed}
+.ghost{background:#fff;color:var(--blue);border:1.5px solid var(--line);border-radius:10px;padding:11px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+.ghost:hover{border-color:var(--blue)}
+a{color:var(--blue)}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:680px){.grid{grid-template-columns:1fr}}
+.grid .box:nth-child(3):last-child{grid-column:1 / -1;max-width:calc(50% - 10px);justify-self:center;width:100%}
+@media(max-width:680px){.grid .box:nth-child(3):last-child{max-width:none}}
+.box{display:flex;flex-direction:column}
+.box h2{font-size:17px;margin:0 0 4px}
+.box .desc{color:var(--mut);font-size:13.5px;margin:0 0 16px}
+.stats{background:var(--bg);border-radius:10px;padding:14px 16px;margin-bottom:16px}
+.stats-empty{color:var(--mut);font-size:13.5px;text-align:center;padding:8px 0}
+.stat-row{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.stat-row:last-child{border-bottom:0}
+.stat-row .pct{font-weight:700}
+.pct.good{color:var(--ok)}.pct.mid{color:var(--amber)}.pct.low{color:var(--no)}
+.summary{display:flex;gap:14px;margin-bottom:14px}
+.summary .card{flex:1;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-align:center}
+.summary .n{font-size:22px;font-weight:800;color:var(--blue)}
+.summary .l{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.4px}
+.launch{margin-top:auto;display:block;padding:12px}
+.reset-all{background:none;border:0;color:var(--mut);font-size:12px;cursor:pointer;text-decoration:underline;font-family:inherit;margin-top:8px}
+.factbar{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 24px}
+.fact{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 13px;font-size:12.5px;color:var(--mut)}
+.fact b{color:var(--ink);font-weight:700}
+.blueprint{margin-top:26px}
+.blueprint h2{font-size:16px;margin:0 0 10px}
+.bp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.bp th,.bp td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--line)}
+.bp tr:last-child td{border-bottom:0}
+.bp th{font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--mut);font-weight:700;background:var(--bg)}
+.bp td.n,.bp th.n{text-align:right;font-variant-numeric:tabular-nums}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <span class="badge">CCDV-F</span>
+    <small>Claude Certified Developer &ndash; Foundations &middot; Practice</small>
+    <span class="user" id="user"></span>
+  </div>
+  <div class="hero">
+    <h1>Your Practice Dashboard</h1>
+    <p>Three practice sets weighted to the CCDV-F exam blueprint. Each set is 21 items and can be taken in study mode or under exam timing.</p>
+  </div>
+  <div class="factbar"><div class="fact"><b>53</b> items</div><div class="fact"><b>120</b> minutes</div><div class="fact">Pass at <b>720</b> of 100&ndash;1000</div><div class="fact">Multiple choice and multiple response</div><div class="fact">Delivered by <b>Pearson VUE</b></div></div>
+  <div class="grid" id="grid">
+    <p class="stats-empty">Sign in to see your results&hellip;</p>
+  </div>
+  <div class="blueprint">
+    <h2>How the sets are weighted</h2>
+    <table class="bp">
+      <tr><th>Domain</th><th class="n">Exam weight</th><th class="n">&asymp; items of 53</th><th class="n">Items per set</th></tr>
+      <tr><td>D1 &middot; Agents and Workflows</td><td class="n">14.7%</td><td class="n">8</td><td class="n">3</td></tr><tr><td>D2 &middot; Applications and Integration</td><td class="n">33.1%</td><td class="n">18</td><td class="n">7</td></tr><tr><td>D3 &middot; Claude Code</td><td class="n">3.1%</td><td class="n">2</td><td class="n">1</td></tr><tr><td>D4 &middot; Eval, Testing, and Debugging</td><td class="n">2.6%</td><td class="n">1</td><td class="n">1</td></tr><tr><td>D5 &middot; Model Selection and Optimisation</td><td class="n">16.8%</td><td class="n">9</td><td class="n">3</td></tr><tr><td>D6 &middot; Prompt and Context Engineering</td><td class="n">11.0%</td><td class="n">6</td><td class="n">2</td></tr><tr><td>D7 &middot; Security and Safety</td><td class="n">8.1%</td><td class="n">4</td><td class="n">2</td></tr><tr><td>D8 &middot; Tools and MCPs</td><td class="n">10.6%</td><td class="n">6</td><td class="n">2</td></tr>
+    </table>
+    <p class="note" style="font-size:12.5px;color:var(--mut);margin-top:10px">Each 21-item set reproduces the 53-item blueprint at roughly 40% scale, so the domain you see most here is the domain you will see most on exam day. The middle column is the blueprint weight applied to 53 items and rounds to the nearest whole item.</p>
+  </div>
+  <div class="foot">Original practice items written against Anthropic's Claude Certified Developer &ndash; Foundations Exam Guide v1.0 (July 2026) and the official Developer Foundations prep path. Not affiliated with or endorsed by Anthropic. For internal SF Knowledge Hub prep only.</div>
+</div>
+
+
+<script>
+/* SF auth gate - Google SSO (hd: sourcefuse.com, redirect) + email/password.
+   Reuses sfcertification-grafana. PASTE the live config below per the golden rule. */
+(function () {
+const firebaseConfig = {
+  apiKey: "AIzaSyC-I-IOCq2fCwa471fsD5xOn6SYQSBDp7Q",
+  authDomain: "sfcertification-grafana.firebaseapp.com",
+  projectId: "sfcertification-grafana",
+  storageBucket: "sfcertification-grafana.firebasestorage.app",
+  messagingSenderId: "227322696511",
+  appId: "1:227322696511:web:12e7ced7dd3d45fa06798a"
+};
+  const ALLOWED_DOMAIN = "sourcefuse.com";
+  const ALLOWED_EXTRA = ["ravjv2013@gmail.com"];  // TEST ONLY - remove after testing
+  let auth, GoogleProvider, signInRedirect, getRedirect, signInEmail, onAuth, signOutFn, appMod;
+  let readyCb = null;
+
+  async function initFirebase() {
+    appMod = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js");
+    const authMod = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js");
+    const app = appMod.getApps().length ? appMod.getApp() : appMod.initializeApp(firebaseConfig);
+    auth = authMod.getAuth(app);
+    GoogleProvider = authMod.GoogleAuthProvider;
+    signInRedirect = (p) => authMod.signInWithRedirect(auth, p);
+    getRedirect = () => authMod.getRedirectResult(auth);
+    signInEmail = (e, pw) => authMod.signInWithEmailAndPassword(auth, e, pw);
+    onAuth = (cb) => authMod.onAuthStateChanged(auth, cb);
+    signOutFn = () => authMod.signOut(auth);
+  }
+  function styleTag(){return `<style>
+    .sf-auth-backdrop{position:fixed;inset:0;background:rgba(16,38,60,.55);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
+    .sf-auth-card{background:#fff;border-radius:16px;padding:30px 28px;width:100%;max-width:380px;box-shadow:0 12px 40px rgba(10,30,55,.25)}
+    .sf-auth-badge{display:inline-block;background:var(--blue,#1a6eb5);color:#fff;font-weight:700;font-size:12px;padding:4px 11px;border-radius:14px;margin-bottom:14px}
+    .sf-auth-card h2{margin:0 0 4px;font-size:20px;color:#1a2733}
+    .sf-auth-sub{margin:0 0 20px;color:#5a6b7a;font-size:14px}
+    .sf-google{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:#fff;border:1.5px solid #dbe3ec;border-radius:10px;padding:12px;font-size:15px;font-weight:600;color:#1a2733;cursor:pointer;font-family:inherit}
+    .sf-google:hover{background:#f7fbff;border-color:var(--blue,#1a6eb5)}
+    .sf-g{background:conic-gradient(from -45deg,#ea4335 0 25%,#fbbc05 0 50%,#34a853 0 75%,#4285f4 0);color:#fff;font-weight:800;width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:13px}
+    .sf-or{display:flex;align-items:center;text-align:center;color:#93a1af;font-size:12px;margin:18px 0}
+    .sf-or::before,.sf-or::after{content:"";flex:1;height:1px;background:#e2e8ef}
+    .sf-or span{padding:0 12px}
+    .sf-lbl{display:block;font-size:12.5px;font-weight:600;color:#5a6b7a;margin-bottom:5px}
+    .sf-inp{width:100%;border:1.5px solid #dbe3ec;border-radius:9px;padding:11px 12px;font-size:14.5px;margin-bottom:14px;font-family:inherit}
+    .sf-inp:focus{outline:none;border-color:var(--blue,#1a6eb5)}
+    .sf-signin{width:100%;background:var(--blue,#1a6eb5);color:#fff;border:0;border-radius:10px;padding:12px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit}
+    .sf-signin:hover{background:var(--blue-d,#12507f)}
+    .sf-err{color:#b5341a;font-size:13px;margin-top:12px;min-height:16px}
+  </style>`;}
+  function overlayHTML(){return `
+    <div class="sf-auth-backdrop" id="sf-auth"><div class="sf-auth-card">
+      <div class="sf-auth-badge">SF Knowledge Hub</div>
+      <h2>Sign in</h2>
+      <p class="sf-auth-sub">Use your SourceFuse account to continue.</p>
+      <button class="sf-google" id="sf-google"><span class="sf-g">G</span> Sign in with Google</button>
+      <div class="sf-or"><span>or</span></div>
+      <label class="sf-lbl">Email</label>
+      <input class="sf-inp" id="sf-email" type="email" placeholder="you@sourcefuse.com" autocomplete="username">
+      <label class="sf-lbl">Password</label>
+      <input class="sf-inp" id="sf-pass" type="password" placeholder="........" autocomplete="current-password">
+      <button class="sf-signin" id="sf-signin">Sign in</button>
+      <div class="sf-err" id="sf-err"></div>
+    </div></div>`;}
+  function fail(m){const e=document.getElementById("sf-err");if(e)e.textContent=m;}
+  function validDomain(x){if(typeof x!=="string")return false;var e=x.toLowerCase();return e.endsWith("@"+ALLOWED_DOMAIN)||ALLOWED_EXTRA.includes(e);}
+  function proceed(email){const el=document.getElementById("sf-auth");if(el)el.remove();if(readyCb)readyCb(email,signOutFn);}
+  function wireOverlay(){
+    document.getElementById("sf-google").addEventListener("click",async()=>{
+      fail("");
+      if(!signInRedirect)return fail("Auth service not ready - Google SSO needs the deployed https host. Use email/password below.");
+      try{const p=new GoogleProvider();p.setCustomParameters({hd:ALLOWED_DOMAIN,prompt:"select_account"});await signInRedirect(p);}
+      catch(e){fail("Google sign-in couldn't start. Use email/password below.");}
+    });
+    document.getElementById("sf-signin").addEventListener("click",async()=>{
+      fail("");
+      const email=(document.getElementById("sf-email").value||"").trim();
+      const pass=document.getElementById("sf-pass").value||"";
+      if(!validDomain(email))return fail("Email must be an @sourcefuse.com address.");
+      if(!pass)return fail("Enter your password.");
+      try{const r=await signInEmail(email,pass);proceed((r.user&&r.user.email)||email);}
+      catch(e){fail("Incorrect email or password.");}
+    });
+  }
+  async function mount(onReady){
+    readyCb=onReady;
+    document.head.insertAdjacentHTML("beforeend",styleTag());
+    document.body.insertAdjacentHTML("beforeend",overlayHTML());
+    try{await initFirebase();}catch(e){fail("Auth service loading... (Google SSO needs the deployed https host).");}
+    if(getRedirect){
+      try{const res=await getRedirect();
+        if(res&&res.user){const email=res.user.email;
+          if(!validDomain(email)){await signOutFn();fail("Please use your @sourcefuse.com account.");}
+          else{proceed(email);return;}}
+      }catch(e){fail("Google sign-in didn't complete. Try again or use email/password.");}
+    }
+    if(onAuth){onAuth((u)=>{if(u&&validDomain(u.email))proceed(u.email);});}
+    wireOverlay();
+  }
+  window.SFAuth={mount};
+})();
+</script>
+
+
+<!-- Dashboard: reads each set page's saved results for the signed-in user -->
+<script>
+(function(){
+  var BUILD="2026082701";
+  var SETS=[
+  {
+    "key": "ccdvf_set1_basic_v1",
+    "tag": "BASIC",
+    "tagClass": "tag-basic",
+    "name": "Practice results for Basic \u2014 Set 1",
+    "desc": "Foundational readiness across all eight CCDV-F domains.",
+    "file": "basic-prep.html",
+    "build": "2026082701",
+    "boxLabel": "Basic Set 1"
+  },
+  {
+    "key": "ccdvf_set2_inter_v1",
+    "tag": "INTERMEDIATE",
+    "tagClass": "tag-adv",
+    "name": "Practice results for Intermediate \u2014 Set 2",
+    "desc": "Scenario-driven questions with close distractors.",
+    "file": "intermediate-prep.html",
+    "build": "2026082701",
+    "boxLabel": "Intermediate Set 2"
+  },
+  {
+    "key": "ccdvf_set3_adv_v1",
+    "tag": "ADVANCED",
+    "tagClass": "tag-expert",
+    "name": "Practice results for Advanced \u2014 Set 3",
+    "desc": "Multi-constraint design judgement, weighted to the real blueprint.",
+    "file": "advanced-prep.html",
+    "build": "2026082701",
+    "boxLabel": "Advanced Set 3"
+  }
+];
+  var BASE="https://sflearningdevelopment.github.io/Claude-CCDV-F-Prep/";   /* Update if the repository path differs. */
+
+  function safeEmail(email){return email.replace(/[^a-z0-9]/gi,"_").toLowerCase();}
+  function loadResult(setKey,email){
+    try{var raw=localStorage.getItem(setKey+"__"+safeEmail(email));return raw?JSON.parse(raw):null;}
+    catch(e){return null;}
+  }
+  function pctClass(p){return p>=70?"good":p>=50?"mid":"low";}
+
+  function boxHTML(set,email){
+    var st=loadResult(set.key,email);
+    var hist=(st&&st.history)||[];
+    var html="";
+    html+='<div class="box">';
+    html+='<span class="box-tag '+set.tagClass+'">'+set.tag+'</span>';
+    html+='<h2>'+set.name+'</h2>';
+    html+='<p class="desc">'+set.desc+'</p>';
+    if(!hist.length){
+      html+='<div class="stats"><div class="stats-empty">No attempts yet. Launch the set to begin.</div></div>';
+    }else{
+      var attempts=hist.length;
+      var best=Math.max.apply(null,hist.map(function(h){return Math.round(h.score/h.total*100);}));
+      var last=hist[hist.length-1];
+      var lastPct=Math.round(last.score/last.total*100);
+      html+='<div class="summary">';
+      html+='<div class="card"><div class="n">'+attempts+'</div><div class="l">Attempts</div></div>';
+      html+='<div class="card"><div class="n">'+best+'%</div><div class="l">Best</div></div>';
+      html+='<div class="card"><div class="n">'+lastPct+'%</div><div class="l">Latest</div></div>';
+      html+='</div>';
+      html+='<div class="stats">';
+      hist.forEach(function(h){
+        var p=Math.round(h.score/h.total*100);
+        var when=h.ts?new Date(h.ts).toLocaleDateString(undefined,{month:"short",day:"numeric"}):"";
+        var mode=h.mode?' &middot; '+h.mode:'';
+        html+='<div class="stat-row"><span>Attempt '+h.attempt+(when?' &middot; '+when:'')+mode+'</span>'
+             +'<span><span class="pct '+pctClass(p)+'">'+p+'%</span> &nbsp;'+h.score+'/'+h.total+'</span></div>';
+      });
+      html+='</div>';
+    }
+    html+='<a class="launch" href="'+BASE+set.file+'?v='+(set.build||BUILD)+'">'
+        +(hist.length?'Continue practicing':'Launch '+set.boxLabel)+' &rarr;</a>';
+    html+='</div>';
+    return html;
+  }
+
+  window.SFAuth.mount(function(email,signOut){
+    var u=document.getElementById("user");
+    u.innerHTML=email+' <button class="signout" id="signout">Sign out</button>';
+    var grid=document.getElementById("grid");
+    grid.innerHTML=SETS.map(function(s){return boxHTML(s,email);}).join("");
+    var reset=document.createElement("button");
+    reset.className="reset-all";reset.textContent="Clear my saved results on this browser";
+    reset.onclick=function(){
+      SETS.forEach(function(s){localStorage.removeItem(s.key+"__"+email.replace(/[^a-z0-9]/gi,"_").toLowerCase());});
+      grid.innerHTML=SETS.map(function(s){return boxHTML(s,email);}).join("");
+    };
+    grid.parentNode.insertBefore(reset,document.querySelector(".blueprint"));
+    var so=document.getElementById("signout");
+    if(so&&signOut)so.onclick=function(){signOut().then(function(){location.reload();});};
+  });
+})();
+</script>
+</body></html>
