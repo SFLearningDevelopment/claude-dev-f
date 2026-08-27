@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- build: 2026082702 -->
+<!-- build: 2026082703 -->
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Claude CCDV-F Prep &mdash; SF Knowledge Hub</title>
@@ -235,7 +235,7 @@ const firebaseConfig = {
 <!-- Dashboard: reads each set page's saved results for the signed-in user -->
 <script>
 (function(){
-  var BUILD="2026082702";
+  var BUILD="2026082703";
   var SETS=[
   {
     "key": "ccdvf_set1_basic_v1",
@@ -244,7 +244,7 @@ const firebaseConfig = {
     "name": "Practice results for Basic \u2014 Set 1",
     "desc": "Foundational readiness across all eight CCDV-F domains.",
     "file": "basic-prep.html",
-    "build": "2026082702",
+    "build": "2026082703",
     "boxLabel": "Basic Set 1"
   },
   {
@@ -254,7 +254,7 @@ const firebaseConfig = {
     "name": "Practice results for Intermediate \u2014 Set 2",
     "desc": "Scenario-driven questions with close distractors.",
     "file": "intermediate-prep.html",
-    "build": "2026082702",
+    "build": "2026082703",
     "boxLabel": "Intermediate Set 2"
   },
   {
@@ -264,11 +264,14 @@ const firebaseConfig = {
     "name": "Practice results for Advanced \u2014 Set 3",
     "desc": "Multi-constraint design judgement, weighted to the real blueprint.",
     "file": "advanced-prep.html",
-    "build": "2026082702",
+    "build": "2026082703",
     "boxLabel": "Advanced Set 3"
   }
 ];
-  var BASE="https://sflearningdevelopment.github.io/Claude-CCDV-F-Prep/";   /* Update if the repository path differs. */
+  // Relative to this page: the dashboard and the three set pages live in the
+  // same folder, so links work whatever the repo is named. Set this to an
+  // absolute URL ending in "/" only if the set pages move elsewhere.
+  var BASE="";
 
   function safeEmail(email){return email.replace(/[^a-z0-9]/gi,"_").toLowerCase();}
   function loadResult(setKey,email){
