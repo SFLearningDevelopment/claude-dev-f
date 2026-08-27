@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<!-- build: 2026082701 -->
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CCDV-F Advanced — Set 3 &mdash; SF Knowledge Hub</title>
+<style>
+:root{--blue:#1a6eb5;--blue-d:#12507f;--ink:#1a2733;--mut:#5a6b7a;--line:#e2e8ef;--ok:#127a3e;--no:#b5341a;--amber:#8a5a00;--amber-bg:#fff6e0;--bg:#f5f8fb;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+.wrap{max-width:900px;margin:0 auto;padding:28px 20px 60px}
+.head{display:flex;align-items:center;gap:12px;margin-bottom:6px;flex-wrap:wrap}
+.badge{background:var(--blue);color:#fff;font-weight:700;font-size:13px;padding:5px 12px;border-radius:20px;letter-spacing:.3px}
+.head small{color:var(--mut)}
+.user{margin-left:auto;font-size:12.5px;color:var(--mut);display:flex;align-items:center;gap:10px}
+.signout{background:none;border:0;color:var(--blue);font-size:12.5px;cursor:pointer;text-decoration:underline;font-family:inherit;padding:0}
+.hero{margin:14px 0 26px}
+.hero h1{font-size:24px;margin:0 0 6px}
+.hero p{color:var(--mut);margin:0;font-size:14.5px}
+.foot{text-align:center;color:var(--mut);font-size:12px;margin-top:28px}
+.box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:0 1px 3px rgba(20,50,80,.05)}
+.box-tag{display:inline-block;align-self:flex-start;font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:12px;margin-bottom:10px}
+.tag-basic{color:var(--blue-d);background:#eaf3fb}
+.tag-adv{color:#6a3d00;background:#fdf0da}
+.tag-expert{color:#5b2a86;background:#f2e9fb}
+.launch{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:12px 18px;font-size:14.5px;font-weight:600;cursor:pointer;font-family:inherit;text-align:center;text-decoration:none;display:inline-block}
+.launch:hover{background:var(--blue-d)}
+.launch:disabled{background:#adbccb;cursor:not-allowed}
+.ghost{background:#fff;color:var(--blue);border:1.5px solid var(--line);border-radius:10px;padding:11px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+.ghost:hover{border-color:var(--blue)}
+a{color:var(--blue)}
+
+.crumb{font-size:12.5px;margin-bottom:14px}
+.factbar{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 22px}
+.fact{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 13px;font-size:12.5px;color:var(--mut)}
+.fact b{color:var(--ink);font-weight:700}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0 20px}
+@media(max-width:680px){.modes{grid-template-columns:1fr}}
+.mode{background:#fff;border:2px solid var(--line);border-radius:12px;padding:16px;cursor:pointer;text-align:left;font-family:inherit;color:inherit}
+.mode:hover{border-color:#c3d6e8}
+.mode.sel{border-color:var(--blue);background:#f7fbff}
+.mode h3{margin:0 0 4px;font-size:15px}
+.mode p{margin:0;font-size:13px;color:var(--mut)}
+.mix{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px}
+.mix th,.mix td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line)}
+.mix th{font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--mut);font-weight:700}
+.mix td.n,.mix th.n{text-align:right}
+.bar{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:16px;flex-wrap:wrap;position:sticky;top:0;z-index:5}
+.bar .pos{font-size:13.5px;color:var(--mut)}
+.bar .clock{font-variant-numeric:tabular-nums;font-weight:700;font-size:15px;margin-left:auto}
+.bar .clock.warn{color:var(--amber)}
+.bar .clock.crit{color:var(--no)}
+.nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.nav button{width:32px;height:32px;border-radius:8px;border:1.5px solid var(--line);background:#fff;font-size:12.5px;font-family:inherit;cursor:pointer;color:var(--mut);padding:0}
+.nav button.done{border-color:var(--blue);color:var(--blue-d);background:#eaf3fb;font-weight:700}
+.nav button.flag{border-color:var(--amber);background:var(--amber-bg);color:var(--amber);font-weight:700}
+.nav button.cur{outline:2px solid var(--blue);outline-offset:1px}
+.qmeta{font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--mut);font-weight:700;margin-bottom:8px}
+.qtext{font-size:15.5px;margin:0 0 6px}
+.selnote{display:inline-block;background:var(--amber-bg);color:var(--amber);font-size:12px;font-weight:700;padding:3px 10px;border-radius:12px;margin-bottom:12px}
+.opts{display:flex;flex-direction:column;gap:9px;margin:14px 0 0}
+.opt{display:flex;gap:11px;align-items:flex-start;border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer;background:#fff;font-size:14.5px}
+.opt:hover{border-color:#c3d6e8}
+.opt.sel{border-color:var(--blue);background:#f7fbff}
+.opt.right{border-color:var(--ok);background:#eef8f1}
+.opt.wrong{border-color:var(--no);background:#fdf0ed}
+.opt input{margin-top:4px;flex:none}
+.opt .k{font-weight:700;color:var(--mut);flex:none;width:16px}
+.expl{border-left:3px solid var(--blue);background:#f7fbff;border-radius:0 10px 10px 0;padding:13px 16px;margin-top:14px;font-size:14px}
+.expl .v{font-weight:700;display:block;margin-bottom:4px}
+.expl .v.ok{color:var(--ok)}.expl .v.no{color:var(--no)}
+.actions{display:flex;gap:10px;align-items:center;margin-top:18px;flex-wrap:wrap}
+.actions .sp{margin-left:auto}
+.score{display:flex;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.score .card{flex:1;min-width:130px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}
+.score .n{font-size:26px;font-weight:800;color:var(--blue)}
+.score .n.pass{color:var(--ok)}.score .n.fail{color:var(--no)}
+.score .l{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.4px}
+.verdict{border-radius:12px;padding:14px 18px;margin-bottom:18px;font-size:14.5px}
+.verdict.pass{background:#eef8f1;border:1px solid #bde0c9;color:#0d5b2e}
+.verdict.fail{background:#fdf0ed;border:1px solid #f0c8bd;color:#8a2814}
+.rev{border-top:1px solid var(--line);padding-top:16px;margin-top:8px}
+.pct.good{color:var(--ok);font-weight:700}.pct.mid{color:var(--amber);font-weight:700}.pct.low{color:var(--no);font-weight:700}
+.note{font-size:12.5px;color:var(--mut);margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <span class="badge">CCDV-F</span>
+    <small>Advanced — Set 3</small>
+    <span class="user" id="user"></span>
+  </div>
+  <p class="crumb"><a href="index.html?v=2026082701">&larr; Practice dashboard</a></p>
+  <div id="app"><p style="color:var(--mut)">Sign in to begin&hellip;</p></div>
+  <div class="foot">Original practice items written against Anthropic's Claude Certified Developer &ndash; Foundations Exam Guide v1.0 (July 2026) and the official Developer Foundations prep path. Not affiliated with or endorsed by Anthropic. For internal SF Knowledge Hub prep only.</div>
+</div>
+
+
+<script>
+/* SF auth gate - Google SSO (hd: sourcefuse.com, redirect) + email/password.
+   Reuses sfcertification-grafana. PASTE the live config below per the golden rule. */
+(function () {
+const firebaseConfig = {
+  apiKey: "AIzaSyC-I-IOCq2fCwa471fsD5xOn6SYQSBDp7Q",
+  authDomain: "sfcertification-grafana.firebaseapp.com",
+  projectId: "sfcertification-grafana",
+  storageBucket: "sfcertification-grafana.firebasestorage.app",
+  messagingSenderId: "227322696511",
+  appId: "1:227322696511:web:12e7ced7dd3d45fa06798a"
+};
+  const ALLOWED_DOMAIN = "sourcefuse.com";
+  const ALLOWED_EXTRA = ["ravjv2013@gmail.com"];  // TEST ONLY - remove after testing
+  let auth, GoogleProvider, signInRedirect, getRedirect, signInEmail, onAuth, signOutFn, appMod;
+  let readyCb = null;
+
+  async function initFirebase() {
+    appMod = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js");
+    const authMod = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js");
+    const app = appMod.getApps().length ? appMod.getApp() : appMod.initializeApp(firebaseConfig);
+    auth = authMod.getAuth(app);
+    GoogleProvider = authMod.GoogleAuthProvider;
+    signInRedirect = (p) => authMod.signInWithRedirect(auth, p);
+    getRedirect = () => authMod.getRedirectResult(auth);
+    signInEmail = (e, pw) => authMod.signInWithEmailAndPassword(auth, e, pw);
+    onAuth = (cb) => authMod.onAuthStateChanged(auth, cb);
+    signOutFn = () => authMod.signOut(auth);
+  }
+  function styleTag(){return `<style>
+    .sf-auth-backdrop{position:fixed;inset:0;background:rgba(16,38,60,.55);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
+    .sf-auth-card{background:#fff;border-radius:16px;padding:30px 28px;width:100%;max-width:380px;box-shadow:0 12px 40px rgba(10,30,55,.25)}
+    .sf-auth-badge{display:inline-block;background:var(--blue,#1a6eb5);color:#fff;font-weight:700;font-size:12px;padding:4px 11px;border-radius:14px;margin-bottom:14px}
+    .sf-auth-card h2{margin:0 0 4px;font-size:20px;color:#1a2733}
+    .sf-auth-sub{margin:0 0 20px;color:#5a6b7a;font-size:14px}
+    .sf-google{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:#fff;border:1.5px solid #dbe3ec;border-radius:10px;padding:12px;font-size:15px;font-weight:600;color:#1a2733;cursor:pointer;font-family:inherit}
+    .sf-google:hover{background:#f7fbff;border-color:var(--blue,#1a6eb5)}
+    .sf-g{background:conic-gradient(from -45deg,#ea4335 0 25%,#fbbc05 0 50%,#34a853 0 75%,#4285f4 0);color:#fff;font-weight:800;width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:13px}
+    .sf-or{display:flex;align-items:center;text-align:center;color:#93a1af;font-size:12px;margin:18px 0}
+    .sf-or::before,.sf-or::after{content:"";flex:1;height:1px;background:#e2e8ef}
+    .sf-or span{padding:0 12px}
+    .sf-lbl{display:block;font-size:12.5px;font-weight:600;color:#5a6b7a;margin-bottom:5px}
+    .sf-inp{width:100%;border:1.5px solid #dbe3ec;border-radius:9px;padding:11px 12px;font-size:14.5px;margin-bottom:14px;font-family:inherit}
+    .sf-inp:focus{outline:none;border-color:var(--blue,#1a6eb5)}
+    .sf-signin{width:100%;background:var(--blue,#1a6eb5);color:#fff;border:0;border-radius:10px;padding:12px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit}
+    .sf-signin:hover{background:var(--blue-d,#12507f)}
+    .sf-err{color:#b5341a;font-size:13px;margin-top:12px;min-height:16px}
+  </style>`;}
+  function overlayHTML(){return `
+    <div class="sf-auth-backdrop" id="sf-auth"><div class="sf-auth-card">
+      <div class="sf-auth-badge">SF Knowledge Hub</div>
+      <h2>Sign in</h2>
+      <p class="sf-auth-sub">Use your SourceFuse account to continue.</p>
+      <button class="sf-google" id="sf-google"><span class="sf-g">G</span> Sign in with Google</button>
+      <div class="sf-or"><span>or</span></div>
+      <label class="sf-lbl">Email</label>
+      <input class="sf-inp" id="sf-email" type="email" placeholder="you@sourcefuse.com" autocomplete="username">
+      <label class="sf-lbl">Password</label>
+      <input class="sf-inp" id="sf-pass" type="password" placeholder="........" autocomplete="current-password">
+      <button class="sf-signin" id="sf-signin">Sign in</button>
+      <div class="sf-err" id="sf-err"></div>
+    </div></div>`;}
+  function fail(m){const e=document.getElementById("sf-err");if(e)e.textContent=m;}
+  function validDomain(x){if(typeof x!=="string")return false;var e=x.toLowerCase();return e.endsWith("@"+ALLOWED_DOMAIN)||ALLOWED_EXTRA.includes(e);}
+  function proceed(email){const el=document.getElementById("sf-auth");if(el)el.remove();if(readyCb)readyCb(email,signOutFn);}
+  function wireOverlay(){
+    document.getElementById("sf-google").addEventListener("click",async()=>{
+      fail("");
+      if(!signInRedirect)return fail("Auth service not ready - Google SSO needs the deployed https host. Use email/password below.");
+      try{const p=new GoogleProvider();p.setCustomParameters({hd:ALLOWED_DOMAIN,prompt:"select_account"});await signInRedirect(p);}
+      catch(e){fail("Google sign-in couldn't start. Use email/password below.");}
+    });
+    document.getElementById("sf-signin").addEventListener("click",async()=>{
+      fail("");
+      const email=(document.getElementById("sf-email").value||"").trim();
+      const pass=document.getElementById("sf-pass").value||"";
+      if(!validDomain(email))return fail("Email must be an @sourcefuse.com address.");
+      if(!pass)return fail("Enter your password.");
+      try{const r=await signInEmail(email,pass);proceed((r.user&&r.user.email)||email);}
+      catch(e){fail("Incorrect email or password.");}
+    });
+  }
+  async function mount(onReady){
+    readyCb=onReady;
+    document.head.insertAdjacentHTML("beforeend",styleTag());
+    document.body.insertAdjacentHTML("beforeend",overlayHTML());
+    try{await initFirebase();}catch(e){fail("Auth service loading... (Google SSO needs the deployed https host).");}
+    if(getRedirect){
+      try{const res=await getRedirect();
+        if(res&&res.user){const email=res.user.email;
+          if(!validDomain(email)){await signOutFn();fail("Please use your @sourcefuse.com account.");}
+          else{proceed(email);return;}}
+      }catch(e){fail("Google sign-in didn't complete. Try again or use email/password.");}
+    }
+    if(onAuth){onAuth((u)=>{if(u&&validDomain(u.email))proceed(u.email);});}
+    wireOverlay();
+  }
+  window.SFAuth={mount};
+})();
+</script>
+
+
+<script>
+(function(){
+  var BUILD="2026082701";
+  var SET_KEY="ccdvf_set3_adv_v1";
+  var SET_TITLE="Advanced — Set 3";
+  var TOTAL_MIN=48;
+  var PASS_SCALED=720;
+  var SCALE_LO=100, SCALE_HI=1000;
+  var DOMAIN_NAMES={"D1": "Agents and Workflows", "D2": "Applications and Integration", "D3": "Claude Code", "D4": "Eval, Testing, and Debugging", "D5": "Model Selection and Optimisation", "D6": "Prompt and Context Engineering", "D7": "Security and Safety", "D8": "Tools and MCPs"};
+  var Q=[{"id": "A1", "domain": "D2", "skill": "Claude API Mechanics", "type": "single", "select": 1, "prompt": "A multi-turn agent uses extended thinking alongside tool use. To save tokens you strip thinking blocks out of the assistant turns before sending the next request, and now you see errors and degraded results.", "options": [{"id": "a", "text": "Thinking blocks are presentational only, so the failure must have another cause"}, {"id": "b", "text": "When extended thinking is combined with tool use, the thinking blocks from an assistant turn must be passed back unmodified in the following request: they carry a signature that is verified, so dropping or editing them breaks the turn"}, {"id": "c", "text": "Thinking blocks must always be stripped, because the API rejects them as input"}, {"id": "d", "text": "Convert each thinking block into a plain text block before sending it back"}], "correct": ["b"], "explanation": "Preserving thinking blocks verbatim through a tool-use loop is a hard requirement, not an optimisation, because the reasoning that led to a tool call has to remain attached to it. The signature is what makes editing detectable, which is why (d) fails as well as (b) succeeds. If token growth from thinking is the real problem, the levers are the thinking budget and the number of turns you carry forward, not tampering with returned blocks."}, {"id": "A2", "domain": "D2", "skill": "Software Engineering Foundations", "type": "single", "select": 1, "prompt": "Your client sees four failure classes in production: 400 invalid_request_error, 429 rate_limit_error, 500 api_error, and 529 overloaded_error. Which retry policy is correct?", "options": [{"id": "a", "text": "Retry all four with exponential backoff, since any of them may be transient"}, {"id": "b", "text": "Retry none of them and surface every failure to the caller"}, {"id": "c", "text": "Retry 429, 500 and 529 with exponential backoff and jitter, and do not retry 400 — a malformed request will fail identically on retry, so it should surface as a defect"}, {"id": "d", "text": "Retry 400 and 429 only, since both indicate a request-side problem"}], "correct": ["c"], "explanation": "The dividing line is whether the same request could succeed later. 429, 500 and 529 are transient conditions on the service side; a 400 means the request itself is wrong and will be wrong every time. Retrying 400s, as in (a) and (d), burns quota and — worse — hides a bug behind a retry loop until it appears as a latency problem instead of the validation error it actually is."}, {"id": "A3", "domain": "D2", "skill": "Claude Application Design", "type": "multi", "select": 3, "prompt": "An agent has passed manual QA and is proposed for unattended live traffic. Select THREE things that must exist before it goes live.", "options": [{"id": "a", "text": "A regression eval suite with a defined pass threshold, run automatically whenever the prompt, tools or model change"}, {"id": "b", "text": "Per-request budget and timeout limits, with a defined behaviour when a limit is reached"}, {"id": "c", "text": "The most capable model tier available, so quality is never the limiting factor"}, {"id": "d", "text": "Tracing that ties a user-visible failure back to the exact request, tool calls, and prompt version that produced it"}], "correct": ["a", "b", "d"], "explanation": "The three correct answers cover the questions production will ask: did this change make things worse, what stops a single request consuming unbounded resource, and how do we diagnose the complaint that arrives on Tuesday. Model tier is a design decision, not a readiness criterion — a top-tier model with no evals, no budgets and no tracing is less production-ready than a cheaper one that has all three."}, {"id": "A4", "domain": "D2", "skill": "Software Engineering Foundations", "type": "single", "select": 1, "prompt": "An agent runs a four-step sequence with external side effects. Step 3 fails after steps 1 and 2 have already completed.", "options": [{"id": "a", "text": "Restart the sequence from step 1 on the next attempt"}, {"id": "b", "text": "Make each step idempotent and record its completion in durable state outside the conversation, then resume from the recorded checkpoint or run a defined compensating action for the completed steps"}, {"id": "c", "text": "Ask Claude to report which steps it already completed and continue from its answer"}, {"id": "d", "text": "Prompt the agent to undo the earlier steps before retrying"}], "correct": ["b"], "explanation": "What already happened in the world is a fact about your system, so it must live in your system's state rather than being inferred from a transcript. Options (c) and (d) both ask the model to be the source of truth for external side effects, which is the same category error in two forms. Option (a) is safe only if every step is idempotent — and if you have done that work, you have already built (b)."}, {"id": "A5", "domain": "D2", "skill": "Systems Life Cycle", "type": "single", "select": 1, "prompt": "A new model version is released. Your prompts were tuned against the version currently in production.", "options": [{"id": "a", "text": "Switch production over immediately to get the improvements to users"}, {"id": "b", "text": "Keep the model version pinned in configuration, run the new version against the existing eval suite in staging or a shadow path, compare on the metrics that define 'done', then promote behind a rollback path"}, {"id": "c", "text": "Stay on the current version indefinitely to avoid regression risk"}, {"id": "d", "text": "Split production traffic between versions and compare user satisfaction, without running the evals first"}], "correct": ["b"], "explanation": "Pinning is what makes an upgrade a decision rather than an event, and the eval suite is what turns 'seems better' into evidence. Option (d) is not wrong in spirit — live comparison is valuable — but running it before the offline evals exposes users to regressions the suite would have caught for free. Option (c) trades a managed risk for an accumulating one, since a pinned version does not stay available forever."}, {"id": "A6", "domain": "D2", "skill": "Understanding Requirements", "type": "single", "select": 1, "prompt": "A financial statement feature requires that the totals always sum exactly and that an auditor can reproduce every figure.", "options": [{"id": "a", "text": "Instruct Claude to be careful with arithmetic and verify each total with a second model call"}, {"id": "b", "text": "Compute the totals in code and keep the deterministic requirement out of the model entirely, using Claude for the genuinely linguistic parts such as extraction, explanation and drafting"}, {"id": "c", "text": "Enable extended thinking with a large budget so the arithmetic is reasoned through carefully"}, {"id": "d", "text": "Move to the most capable tier, where arithmetic errors are rare"}], "correct": ["b"], "explanation": "This is the clearest case of a general rule: when a requirement is deterministic and auditable, remove the probabilistic step rather than making it more reliable. Options (a), (c) and (d) all reduce the error rate without ever reaching zero, and none of them gives an auditor a reproducible derivation. Deciding which parts of a feature the model should not touch is a core requirements skill, not a limitation."}, {"id": "A7", "domain": "D2", "skill": "Configuration Management", "type": "multi", "select": 2, "prompt": "You need to be able to reproduce an agent run's behaviour weeks after the fact. Select TWO things that must be captured together.", "options": [{"id": "a", "text": "The prompt or template version, together with the model identifier and inference parameters"}, {"id": "b", "text": "The tool schemas in force and the version of any MCP server the run connected to"}, {"id": "c", "text": "The end user's browser and operating system version"}, {"id": "d", "text": "The wall-clock time at which the run started"}], "correct": ["a", "b"], "explanation": "Behaviour is determined by what the model saw and what it could do, which is prompt plus parameters plus the capability surface. Tool schemas and MCP server versions belong in that set because a changed description or a changed return shape alters behaviour just as surely as a changed prompt, and it is the input teams most often forget to version. A timestamp is useful for correlating logs but does not reconstruct the run, and client details are irrelevant to what the model did."}, {"id": "A8", "domain": "D5", "skill": "LLM Fundamentals", "type": "single", "select": 1, "prompt": "Cost analysis shows input tokens dominate your spend. The same 30,000-token reference document is re-sent on each of roughly 2,000 daily requests.", "options": [{"id": "a", "text": "Reduce max_tokens so replies are shorter"}, {"id": "b", "text": "Cache the stable document prefix so repeat requests read it from cache instead of reprocessing it, and separately check whether every request needs all 30,000 tokens or only a retrieved slice"}, {"id": "c", "text": "Lower the temperature, which reduces the work per request"}, {"id": "d", "text": "Switch to streaming so tokens are processed incrementally"}], "correct": ["b"], "explanation": "The diagnosis is already in the question: the spend is on input, so output-side levers like (a) address the wrong side of the ledger. The second half of (b) is the part that is easy to skip — caching makes the wrong architecture cheap, while retrieval fixes it, and the two compose well. Neither temperature nor streaming changes how many input tokens are processed."}, {"id": "A9", "domain": "D5", "skill": "Technical Fundamentals", "type": "single", "select": 1, "prompt": "You need to classify 200,000 archived documents overnight. No user is waiting, and cost per document is the binding constraint.", "options": [{"id": "a", "text": "Fire real-time requests at maximum concurrency and accept the rate limiting"}, {"id": "b", "text": "Submit the work through the Batch API, which processes asynchronously at a substantially lower price per token, since there is no latency requirement to protect"}, {"id": "c", "text": "Use the most capable tier with prompt caching enabled"}, {"id": "d", "text": "Process the documents sequentially through a single worker to stay inside rate limits"}], "correct": ["b"], "explanation": "Batch processing exists for exactly this shape of work: high volume, no interactive user, cost-sensitive. Trading latency you do not need for a materially lower rate is the whole point. Option (a) fights rate limits for a deadline that does not exist, and (c) is a partial answer — caching helps if the prompt prefix is shared, but it does not touch the per-token rate the way batching does."}, {"id": "A10", "domain": "D5", "skill": "Cost and Token Management", "type": "single", "select": 1, "prompt": "An agent averages fourteen tool-call round trips per task, and each round trip re-sends the accumulated conversation.", "options": [{"id": "a", "text": "Tool results are not billed, so the round trips are close to free"}, {"id": "b", "text": "Each round trip re-bills the accumulated history as input, so cost grows far faster than the turn count suggests — reduce it by capping turns, trimming or compacting what is carried forward, caching the stable prefix, and returning compact tool results rather than raw payloads"}, {"id": "c", "text": "Only the final assistant message in a task is billed"}, {"id": "d", "text": "Lowering max_tokens on each call is the primary lever"}], "correct": ["b"], "explanation": "This is the cost model most teams discover late: an agent's spend scales with the growth of what it carries, not with the number of decisions it makes, so a fourteen-turn task can cost many times a fourteen-times-single-call estimate. Compact tool results are the highest-leverage item on the list, because a verbose return is re-billed on every subsequent turn of the same task. Output limits, as in (d), barely move a bill dominated by input."}, {"id": "A11", "domain": "D6", "skill": "Context Engineering", "type": "multi", "select": 2, "prompt": "A window is filled to near capacity with loosely relevant material. Nothing errors, but answer quality is visibly worse than on shorter inputs. Select TWO effective responses.", "options": [{"id": "a", "text": "Curate what enters the window: retrieve and rank for relevance, and drop material that does not earn its place"}, {"id": "b", "text": "Fill the remaining space with additional examples so Claude has more material to draw on"}, {"id": "c", "text": "Structure the context so the task instruction and the most decision-relevant material are clearly delimited and deliberately positioned, rather than buried inside a long undifferentiated block"}, {"id": "d", "text": "Raise max_tokens so the reply has more room"}], "correct": ["a", "c"], "explanation": "A window that fits is not the same as a window that works: attention is finite, and relevant material competes with everything else you loaded. Curation reduces the competition and structure makes what remains findable, which is why they pair well. Option (b) treats free space as an obligation to fill and makes the problem worse. Option (d) addresses output length, which is not what degraded here."}, {"id": "A12", "domain": "D6", "skill": "Output Handling", "type": "single", "select": 1, "prompt": "About one output in two hundred fails schema validation in an automated pipeline with no human in the loop.", "options": [{"id": "a", "text": "Retry with the identical prompt until validation passes"}, {"id": "b", "text": "Validate in code, and on failure retry once with the specific validation error fed back as context; if it fails again, route to a defined fallback such as human review or a safe default, and record the case in the eval suite"}, {"id": "c", "text": "Relax the schema until the failing outputs validate"}, {"id": "d", "text": "Repair the malformed output with regular expressions before validating"}], "correct": ["b"], "explanation": "Feeding the validation error back is what makes the retry informed rather than hopeful, and it usually succeeds where a blind retry does not. The bounded fallback matters because an unbounded retry on a systematically malformed output is an infinite loop with a bill attached. Capturing the case as an eval is what stops the same defect recurring silently after the next prompt change."}, {"id": "A13", "domain": "D1", "skill": "Agent Architecture", "type": "single", "select": 1, "prompt": "In a multi-agent system, subagents keep surfacing irrelevant detail from each other's work and the shared context grows unmanageably.", "options": [{"id": "a", "text": "Give every agent access to one shared memory so nothing is missed"}, {"id": "b", "text": "Scope memory deliberately: each subagent receives only the context its task requires and returns a compact structured result to the orchestrator, and shared state is an explicit curated artifact rather than a transcript everyone reads"}, {"id": "c", "text": "Remove memory between agents entirely and pass only the original task"}, {"id": "d", "text": "Move to a model with a larger context window"}], "correct": ["b"], "explanation": "Context isolation is a large part of why multi-agent designs work at all: a subagent that only sees its own slice is cheaper, faster and less distractible. The structured return is the other half, since a worker that hands back its full transcript re-imports the noise you just excluded. Option (a) describes the failure in the question, and (d) buys room for the same problem to keep growing."}, {"id": "A14", "domain": "D1", "skill": "Agent Patterns and Frameworks", "type": "multi", "select": 2, "prompt": "Select TWO situations in which a single agent is the better choice than a multi-agent system.", "options": [{"id": "a", "text": "The task is a linear sequence of dependent steps, where each step needs the full output of the one before it"}, {"id": "b", "text": "The sub-tasks are independent and read-heavy, and would benefit from running in parallel"}, {"id": "c", "text": "Latency and cost budgets are tight enough that coordination overhead would dominate the actual work"}, {"id": "d", "text": "The task requires several distinct specialist toolsets whose instructions conflict with one another"}], "correct": ["a", "c"], "explanation": "Multi-agent designs pay for themselves through parallelism and context isolation, so they lose when there is nothing to parallelise and nothing worth isolating. A strictly dependent chain, as in (a), gets no parallel benefit and pays serialisation overhead to hand full outputs between agents. Option (c) names the overhead directly. Options (b) and (d) are the classic arguments for splitting, not against it."}, {"id": "A15", "domain": "D1", "skill": "Agent Construction with Claude", "type": "single", "select": 1, "prompt": "A coding agent produces changes that compile cleanly but sometimes break behaviour that is not obvious from the diff.", "options": [{"id": "a", "text": "Add a system prompt instruction to be careful about behavioural changes"}, {"id": "b", "text": "Give the agent a verification step it must run — the test suite, type checks, linters — and feed the results back into the loop, so 'done' is defined by a check the agent cannot reason its way past"}, {"id": "c", "text": "Move to a more capable model tier"}, {"id": "d", "text": "Have a second model review the diff and approve it before the change is accepted"}], "correct": ["b"], "explanation": "The verify stage of the agentic loop only has force when it is grounded in something external and deterministic; a compiler that passes is a weak signal, and a test suite is a strong one. Option (d) is the strongest distractor because model review does catch real defects — but a reviewer built on the same model shares the generator's blind spots, and it is a supplement to running the tests rather than a substitute for it."}, {"id": "A16", "domain": "D8", "skill": "Tool Implementation", "type": "single", "select": 1, "prompt": "A search tool returns a 40,000-token JSON payload per call. The agent performs acceptably on its first call and degrades sharply after the second.", "options": [{"id": "a", "text": "Let Claude parse the payload, since it handles JSON well"}, {"id": "b", "text": "Shape the tool's return value for the consumer: return the fields the next decision actually needs, paginate or summarise the rest, and provide a follow-up tool to fetch detail on demand"}, {"id": "c", "text": "Move to a model with a larger context window"}, {"id": "d", "text": "Cache the tool result so repeat calls are cheaper"}], "correct": ["b"], "explanation": "A tool's return value is part of its interface design, and 'return everything and let the model sort it out' pushes the cost onto every subsequent turn, since that payload is re-sent as history each time. The drill-down tool preserves access to the detail without paying for it up front. Option (d) misreads the problem as cost when it is context consumption, and (c) delays the same degradation by one or two calls."}, {"id": "A17", "domain": "D8", "skill": "MCP Server Development", "type": "multi", "select": 2, "prompt": "You are designing an MCP server that fronts an internal system holding customer records. Select TWO sound practices.", "options": [{"id": "a", "text": "Authenticate and authorise each caller at the server and enforce that caller's own permissions, rather than having every request run under one shared high-privilege service account"}, {"id": "b", "text": "Include the service credential in the tool description so the calling model can pass it through correctly"}, {"id": "c", "text": "Expose narrow, purpose-built tools with validated inputs instead of a single generic tool that runs arbitrary queries"}, {"id": "d", "text": "Return full stack traces on error so the model has maximum information to work with"}], "correct": ["a", "c"], "explanation": "Per-caller authorisation keeps the model from becoming a privilege escalation path, which is what a shared high-privilege account creates. Narrow tools bound what any single call can do and make inputs validatable, whereas a generic query tool inherits the full power of the underlying system. Option (b) puts a secret into model-visible text, and (d) leaks internal structure into context that may be logged, displayed, or reached by an injected instruction."}, {"id": "A18", "domain": "D7", "skill": "AI Application Security", "type": "single", "select": 1, "prompt": "An agent has access to private customer data, reads untrusted external content as part of its work, and has an outbound HTTP tool.", "options": [{"id": "a", "text": "The combination is acceptable, since the model is trained to refuse exfiltration requests"}, {"id": "b", "text": "That combination is what makes injection exploitable: break one leg of it by removing or gating the outbound channel, isolating untrusted content in a context that holds no private data, or requiring approval on anything that leaves the system"}, {"id": "c", "text": "Add a system prompt instruction forbidding the agent from sending data to external addresses"}, {"id": "d", "text": "Log all outbound requests and review them on a weekly basis"}], "correct": ["b"], "explanation": "Private data, untrusted input, and an outbound channel are individually reasonable and jointly dangerous, because injected instructions in the untrusted content can move the private data out through the channel. The remedy is architectural: remove one of the three from the same context. Options (a) and (c) rely on model behaviour to hold a boundary, and (d) is detection after the data has already left, which is not a control."}, {"id": "A19", "domain": "D7", "skill": "Guardrails and Safe Deployment", "type": "single", "select": 1, "prompt": "A consumer-facing assistant produces an unacceptable output in a small fraction of interactions.", "options": [{"id": "a", "text": "Rely on the model's training, since the rate is already low"}, {"id": "b", "text": "Layer controls: constrain what enters, constrain what tools can do, screen outputs before they reach the user with a check proportionate to the risk, and define what happens when a check trips — on the assumption that no single layer is complete"}, {"id": "c", "text": "Add a single output classifier, which is sufficient once tuned"}, {"id": "d", "text": "Maintain a blocklist of prohibited terms and filter against it"}], "correct": ["b"], "explanation": "Every individual guardrail has a false-negative rate, so a design that depends on one layer inherits that rate as its ceiling. Layering makes the failures independent, which is why the combination outperforms any component. The 'what happens when a check trips' clause is the operational half people skip: a classifier that fires with no defined fallback simply produces a broken interaction instead of a harmful one."}, {"id": "A20", "domain": "D3", "skill": "Claude Code Operation", "type": "single", "select": 1, "prompt": "A code-review workflow needs to run identically for every engineer on the team and must not drift as people customise their own setups.", "options": [{"id": "a", "text": "Post the prompt in a shared channel for people to copy"}, {"id": "b", "text": "Package it as a Skill with a SKILL.md that states when it applies and the procedure to follow, version it in the repository, and distribute it so every session loads the same definition"}, {"id": "c", "text": "Ask each engineer to add the procedure to their own CLAUDE.md"}, {"id": "d", "text": "Reimplement it as a separate application with its own system prompt"}], "correct": ["b"], "explanation": "Skills exist to make a procedure a versioned, distributable artifact rather than a habit each person maintains. The frontmatter describing when the Skill applies is what lets it be invoked at the right moment instead of remembered. Option (c) is close enough to be tempting, but per-developer files are exactly the drift the requirement rules out; a repository-level Skill is reviewed once and applies everywhere."}, {"id": "A21", "domain": "D4", "skill": "Debugging and Error Handling", "type": "single", "select": 1, "prompt": "Your eval suite reports a 95% pass rate, yet production complaints have not fallen.", "options": [{"id": "a", "text": "Raise the pass threshold so the suite is harder to satisfy"}, {"id": "b", "text": "The suite probably does not contain the failing cases: mine production traces for real failures, add them as cases with their expected behaviour, and weight the suite toward the inputs and failure modes that actually occur rather than the ones that were convenient to write"}, {"id": "c", "text": "Add more cases of the same kind already in the suite"}, {"id": "d", "text": "Replace deterministic checks with a model-based judge across the whole suite"}], "correct": ["b"], "explanation": "A pass rate is only as meaningful as the distribution it is measured over, and a suite written from imagination tends to sample the cases you already handle. Production traces are the correction, because they carry the real input distribution and the failures users actually hit. Options (a) and (c) both make a mis-targeted suite stricter or larger without making it representative, which changes the number and not the reality behind it."}];
+
+  var app=document.getElementById("app");
+  var USER="", SIGNOUT=null;
+  var state=null, timerId=null;
+
+  function safeEmail(e){return e.replace(/[^a-z0-9]/gi,"_").toLowerCase();}
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+  function scaled(pct){return Math.round(SCALE_LO+(SCALE_HI-SCALE_LO)*(pct/100));}
+  function pctClass(p){return p>=70?"good":p>=50?"mid":"low";}
+  function pad(n){return n<10?"0"+n:""+n;}
+  function letter(i){return String.fromCharCode(65+i);}
+
+  function shuffle(a){
+    var arr=a.slice();
+    for(var i=arr.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=arr[i];arr[i]=arr[j];arr[j]=t;}
+    return arr;
+  }
+
+  /* ---------- start screen ---------- */
+  function renderStart(){
+    app.innerHTML=
+      '<div class="hero"><h1>'+SET_TITLE+'</h1><p>Trade-off questions where several options are defensible and one is correct, plus the heaviest concentration of select-two and select-three items. Closest to exam day.</p></div>'+
+      '<div class="factbar"><div class="fact"><b>21</b> items</div><div class="fact"><b>48</b> min in exam mode</div><div class="fact"><b>5</b> multiple-response</div><div class="fact">Pass mark <b>720</b> scaled</div></div>'+
+      '<div class="modes">'+
+        '<button class="mode sel" id="m-study"><h3>Study mode</h3><p>Check each answer as you go and read the explanation straight away. No timer. Best for the first pass through a set.</p></button>'+
+        '<button class="mode" id="m-exam"><h3>Exam mode</h3><p>'+TOTAL_MIN+'-minute timer, answers hidden until you submit, flag-and-return navigation. Matches the pacing of the real exam.</p></button>'+
+      '</div>'+
+      '<div class="box"><h2 style="font-size:15px;margin:0 0 4px">Domain mix in this set</h2>'+
+        '<table class="mix"><tr><th>Domain</th><th class="n">Exam weight</th><th class="n">Items here</th></tr><tr><td>D1 &middot; Agents and Workflows</td><td class="n">14.7%</td><td class="n">3</td></tr><tr><td>D2 &middot; Applications and Integration</td><td class="n">33.1%</td><td class="n">7</td></tr><tr><td>D3 &middot; Claude Code</td><td class="n">3.1%</td><td class="n">1</td></tr><tr><td>D4 &middot; Eval, Testing, and Debugging</td><td class="n">2.6%</td><td class="n">1</td></tr><tr><td>D5 &middot; Model Selection and Optimisation</td><td class="n">16.8%</td><td class="n">3</td></tr><tr><td>D6 &middot; Prompt and Context Engineering</td><td class="n">11.0%</td><td class="n">2</td></tr><tr><td>D7 &middot; Security and Safety</td><td class="n">8.1%</td><td class="n">2</td></tr><tr><td>D8 &middot; Tools and MCPs</td><td class="n">10.6%</td><td class="n">2</td></tr></table></div>'+
+      '<div class="actions"><button class="launch" id="go">Start '+SET_TITLE+' &rarr;</button>'+
+        '<label style="font-size:13.5px;color:var(--mut);display:flex;align-items:center;gap:7px"><input type="checkbox" id="shuf" checked> Shuffle question order</label></div>';
+    var mode="study";
+    function pick(sel){
+      mode=sel;
+      document.getElementById("m-study").className="mode"+(sel==="study"?" sel":"");
+      document.getElementById("m-exam").className="mode"+(sel==="exam"?" sel":"");
+    }
+    document.getElementById("m-study").onclick=function(){pick("study");};
+    document.getElementById("m-exam").onclick=function(){pick("exam");};
+    document.getElementById("go").onclick=function(){
+      start(mode,document.getElementById("shuf").checked);
+    };
+  }
+
+  /* ---------- run ---------- */
+  function start(mode,shuf){
+    var order=shuf?shuffle(Q):Q.slice();
+    state={mode:mode,items:order,i:0,answers:{},flags:{},checked:{},
+            started:Date.now(),remaining:TOTAL_MIN*60,submitted:false};
+    if(mode==="exam"){
+      timerId=setInterval(tick,1000);
+    }
+    renderQ();
+  }
+
+  function tick(){
+    if(!state||state.submitted)return;
+    state.remaining--;
+    var el=document.getElementById("clock");
+    if(el){
+      el.textContent=pad(Math.floor(state.remaining/60))+":"+pad(state.remaining%60);
+      el.className="clock"+(state.remaining<=60?" crit":(state.remaining<=300?" warn":""));
+    }
+    if(state.remaining<=0){clearInterval(timerId);submit(true);}
+  }
+
+  function answeredCount(){
+    var n=0;for(var k in state.answers){if(state.answers[k]&&state.answers[k].length)n++;}
+    return n;
+  }
+
+  function navHTML(){
+    var h='<div class="nav">';
+    for(var i=0;i<state.items.length;i++){
+      var id=state.items[i].id;
+      var cls=[];
+      if(state.answers[id]&&state.answers[id].length)cls.push("done");
+      if(state.flags[id])cls.push("flag");
+      if(i===state.i)cls.push("cur");
+      h+='<button class="'+cls.join(" ")+'" data-go="'+i+'">'+(i+1)+'</button>';
+    }
+    return h+'</div>';
+  }
+
+  function renderQ(){
+    var q=state.items[state.i];
+    var picked=state.answers[q.id]||[];
+    var isChecked=!!state.checked[q.id];
+    var h='';
+    h+='<div class="bar"><span class="pos">Question '+(state.i+1)+' of '+state.items.length+'</span>'+
+       '<span class="pos">&middot; '+answeredCount()+' answered</span>';
+    if(state.mode==="exam"){
+      h+='<span class="clock" id="clock">'+pad(Math.floor(state.remaining/60))+":"+pad(state.remaining%60)+'</span>';
+    }else{
+      h+='<span class="clock" style="font-weight:600;font-size:13px;color:var(--mut)">Study mode</span>';
+    }
+    h+='</div>';
+    h+=navHTML();
+    h+='<div class="box">';
+    h+='<div class="qmeta">'+q.domain+' &middot; '+esc(DOMAIN_NAMES[q.domain])+' &middot; '+esc(q.skill)+'</div>';
+    h+='<p class="qtext">'+esc(q.prompt)+'</p>';
+    if(q.type==="multi")h+='<span class="selnote">Select '+(q.select===2?"TWO":"THREE")+' &middot; scored all or nothing</span>';
+    h+='<div class="opts" id="opts">';
+    for(var i=0;i<q.options.length;i++){
+      var o=q.options[i];
+      var sel=picked.indexOf(o.id)>-1;
+      var cls="opt"+(sel?" sel":"");
+      if(isChecked){
+        var right=q.correct.indexOf(o.id)>-1;
+        if(right)cls="opt right";
+        else if(sel)cls="opt wrong";
+        else cls="opt";
+      }
+      h+='<label class="'+cls+'" data-opt="'+o.id+'">'+
+         '<input type="'+(q.type==="multi"?"checkbox":"radio")+'" name="o" value="'+o.id+'"'+(sel?" checked":"")+(isChecked?" disabled":"")+'>'+
+         '<span class="k">'+letter(i)+'</span><span>'+esc(o.text)+'</span></label>';
+    }
+    h+='</div>';
+    if(isChecked){
+      var correct=isCorrect(q,picked);
+      h+='<div class="expl"><span class="v '+(correct?"ok":"no")+'">'+
+         (correct?"Correct":"Not correct &middot; answer: "+q.correct.map(function(c){
+            for(var j=0;j<q.options.length;j++)if(q.options[j].id===c)return letter(j);
+            return c;}).join(" and "))+
+         '</span>'+esc(q.explanation)+'</div>';
+    }
+    h+='<div class="actions">';
+    h+='<button class="ghost" id="prev"'+(state.i===0?" disabled":"")+'>&larr; Previous</button>';
+    if(state.mode==="study"&&!isChecked){
+      h+='<button class="launch" id="check">Check answer</button>';
+    }
+    h+='<button class="ghost" id="flag">'+(state.flags[q.id]?"Unflag":"Flag for review")+'</button>';
+    h+='<span class="sp"></span>';
+    if(state.i<state.items.length-1){
+      h+='<button class="launch" id="next">Next &rarr;</button>';
+    }else{
+      h+='<button class="launch" id="submit">Submit set</button>';
+    }
+    h+='</div>';
+    h+='</div>';
+    if(state.i===state.items.length-1&&answeredCount()<state.items.length){
+      h+='<p class="note">'+(state.items.length-answeredCount())+' item(s) still unanswered. Unanswered items are scored as incorrect, exactly as on the real exam.</p>';
+    }
+    app.innerHTML=h;
+    wireQ(q);
+  }
+
+  function wireQ(q){
+    var opts=app.querySelectorAll("[data-opt]");
+    for(var i=0;i<opts.length;i++){
+      opts[i].addEventListener("click",function(ev){
+        if(state.checked[q.id])return;
+        var id=this.getAttribute("data-opt");
+        var cur=state.answers[q.id]||[];
+        if(q.type==="single"){cur=[id];}
+        else{
+          var at=cur.indexOf(id);
+          if(at>-1)cur.splice(at,1);
+          else if(cur.length<q.select)cur.push(id);
+          else{cur.shift();cur.push(id);}
+        }
+        state.answers[q.id]=cur;
+        renderQ();
+      });
+    }
+    var navs=app.querySelectorAll("[data-go]");
+    for(var n=0;n<navs.length;n++){
+      navs[n].addEventListener("click",function(){state.i=parseInt(this.getAttribute("data-go"),10);renderQ();});
+    }
+    var b;
+    if((b=document.getElementById("prev")))b.onclick=function(){if(state.i>0){state.i--;renderQ();}};
+    if((b=document.getElementById("next")))b.onclick=function(){if(state.i<state.items.length-1){state.i++;renderQ();}};
+    if((b=document.getElementById("flag")))b.onclick=function(){state.flags[q.id]=!state.flags[q.id];renderQ();};
+    if((b=document.getElementById("check")))b.onclick=function(){
+      if(!(state.answers[q.id]||[]).length)return;
+      state.checked[q.id]=true;renderQ();
+    };
+    if((b=document.getElementById("submit")))b.onclick=function(){submit(false);};
+  }
+
+  function isCorrect(q,picked){
+    if(!picked||picked.length!==q.correct.length)return false;
+    for(var i=0;i<q.correct.length;i++)if(picked.indexOf(q.correct[i])<0)return false;
+    return true;
+  }
+
+  /* ---------- results ---------- */
+  function submit(expired){
+    if(state.submitted)return;
+    if(!expired){
+      var missing=state.items.length-answeredCount();
+      if(missing>0&&!confirm(missing+" item(s) are unanswered and will be scored as incorrect. Submit anyway?"))return;
+    }
+    state.submitted=true;
+    if(timerId)clearInterval(timerId);
+    var score=0, byDomain={};
+    state.items.forEach(function(q){
+      var ok=isCorrect(q,state.answers[q.id]||[]);
+      if(ok)score++;
+      if(!byDomain[q.domain])byDomain[q.domain]={n:0,ok:0};
+      byDomain[q.domain].n++; if(ok)byDomain[q.domain].ok++;
+    });
+    save(score,state.items.length,byDomain);
+    renderResults(score,byDomain,expired);
+  }
+
+  function save(score,total,byDomain){
+    try{
+      var k=SET_KEY+"__"+safeEmail(USER);
+      var st=null;
+      try{st=JSON.parse(localStorage.getItem(k));}catch(e){}
+      if(!st||!st.history)st={history:[]};
+      st.history.push({attempt:st.history.length+1,score:score,total:total,ts:Date.now(),
+                        mode:state.mode==="exam"?"exam mode":"study mode",
+                        scaled:scaled(Math.round(score/total*100)),byDomain:byDomain});
+      localStorage.setItem(k,JSON.stringify(st));
+    }catch(e){}
+  }
+
+  function renderResults(score,byDomain,expired){
+    var total=state.items.length;
+    var pct=Math.round(score/total*100);
+    var sc=scaled(pct);
+    var passed=sc>=PASS_SCALED;
+    var mins=Math.round((Date.now()-state.started)/60000);
+    var h='<div class="hero"><h1>'+SET_TITLE+' &middot; results</h1><p>'+
+          (expired?"Time expired and the set was submitted automatically.":"Submitted in "+mins+" minute(s), "+state.mode+" mode.")+'</p></div>';
+    h+='<div class="score">'+
+       '<div class="card"><div class="n">'+score+'/'+total+'</div><div class="l">Raw</div></div>'+
+       '<div class="card"><div class="n">'+pct+'%</div><div class="l">Percent</div></div>'+
+       '<div class="card"><div class="n '+(passed?"pass":"fail")+'">'+sc+'</div><div class="l">Scaled estimate</div></div>'+
+       '</div>';
+    h+='<div class="verdict '+(passed?"pass":"fail")+'">'+
+       (passed?"At this level you would be above the "+PASS_SCALED+" pass mark. Read the review below anyway &mdash; a domain you scored 50% in can still sink a real attempt, because the exam weights domains rather than sets."
+              :"Below the "+PASS_SCALED+" pass mark. Work the weakest domains in the table below first, then retake this set.")+
+       '</div>';
+    h+='<div class="box"><h2 style="font-size:15px;margin:0 0 4px">Performance by domain</h2>'+
+       '<p style="font-size:13px;color:var(--mut);margin:0 0 6px">The real score report gives you percent correct per domain and nothing more, so this table is what you will actually get back.</p>'+
+       '<table class="mix"><tr><th>Domain</th><th class="n">Correct</th><th class="n">Percent</th></tr>';
+    var codes=Object.keys(DOMAIN_NAMES);
+    codes.forEach(function(c){
+      var d=byDomain[c]; if(!d)return;
+      var p=Math.round(d.ok/d.n*100);
+      h+='<tr><td>'+c+' &middot; '+esc(DOMAIN_NAMES[c])+'</td><td class="n">'+d.ok+'/'+d.n+'</td>'+
+         '<td class="n"><span class="pct '+pctClass(p)+'">'+p+'%</span></td></tr>';
+    });
+    h+='</table></div>';
+    h+='<div class="actions" style="margin:18px 0"><button class="launch" id="again">Retake this set</button>'+
+       '<a class="ghost" style="text-decoration:none;display:inline-block" href="index.html?v='+BUILD+'">Back to dashboard</a></div>';
+    h+='<h2 style="font-size:16px;margin:26px 0 10px">Full review</h2>';
+    state.items.forEach(function(q,idx){
+      var picked=state.answers[q.id]||[];
+      var ok=isCorrect(q,picked);
+      h+='<div class="box" style="margin-bottom:14px">';
+      h+='<div class="qmeta">'+(idx+1)+' &middot; '+q.domain+' &middot; '+esc(q.skill)+' &middot; '+(ok?'<span style="color:var(--ok)">correct</span>':'<span style="color:var(--no)">'+(picked.length?"incorrect":"unanswered")+'</span>')+'</div>';
+      h+='<p class="qtext">'+esc(q.prompt)+'</p>';
+      if(q.type==="multi")h+='<span class="selnote">Select '+(q.select===2?"TWO":"THREE")+'</span>';
+      h+='<div class="opts">';
+      q.options.forEach(function(o,i){
+        var right=q.correct.indexOf(o.id)>-1;
+        var sel=picked.indexOf(o.id)>-1;
+        var cls="opt"+(right?" right":(sel?" wrong":""));
+        h+='<div class="'+cls+'"><span class="k">'+letter(i)+'</span><span>'+esc(o.text)+
+           (sel?' <b style="color:var(--mut);font-size:12px">&mdash; your answer</b>':'')+'</span></div>';
+      });
+      h+='</div>';
+      h+='<div class="expl">'+esc(q.explanation)+'</div>';
+      h+='</div>';
+    });
+    app.innerHTML=h;
+    document.getElementById("again").onclick=function(){state=null;renderStart();};
+  }
+
+  window.SFAuth.mount(function(email,signOut){
+    USER=email; SIGNOUT=signOut;
+    var u=document.getElementById("user");
+    u.innerHTML=email+' <button class="signout" id="signout">Sign out</button>';
+    var so=document.getElementById("signout");
+    if(so&&signOut)so.onclick=function(){signOut().then(function(){location.reload();});};
+    renderStart();
+  });
+})();
+</script>
+</body></html>
